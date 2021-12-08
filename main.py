@@ -8,6 +8,7 @@ class MQTTChatGUI(Frame):
     def __init__(self, root, **kw):
         super().__init__(**kw)
         self.root = root
+        self.root.title("MQTT-Chat")
 
         frm = ttk.Frame(self.root, padding=10)
         frm.grid()
