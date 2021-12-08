@@ -49,6 +49,7 @@ class MQTTChatGUI(Frame):
 
     def send_message(self, event=None):
         message = self.message_entry.get()
+        self.message_entry.delete(0, END)
         self.mqtt_client.publish("/BWI20KS/Chat", message, 1)
 
 
