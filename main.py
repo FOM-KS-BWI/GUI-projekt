@@ -17,8 +17,6 @@ class MQTTChatGUI(Frame):
         ttk.Label(frm, text="Broker").grid(column=0, row=0, sticky="w")
         self.broker_entry = ttk.Entry(frm, text="Broker")
         self.broker_entry.grid(column=1, row=0, columnspan=3, sticky="ew")
-        self.connect_button = ttk.Button(frm, text="Connect")
-        self.connect_button.grid(column=4, row=0, sticky="e")
         self.main_text = Text(frm, height=20, width=50)
         self.main_text.grid(column=0, row=1, columnspan=5)
         ttk.Label(frm, text="Message").grid(column=0, row=2, sticky="w")
