@@ -34,7 +34,7 @@ class MQTTChatGUI(Frame):
         # self.connect_button.config(command=connect_mqtt)
         # self.send_button.config(command=send_message)
 
-        self.mqtt_client: mqtt.Client = mqtt.Client("Claudius")
+        self.mqtt_client: mqtt.Client = mqtt.Client("Max")
         self.mqtt_client.connect("broker.mqttdashboard.com")
         self.mqtt_client.on_message = self.receive_message
         self.mqtt_client.on_connect = self.on_connect
