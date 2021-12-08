@@ -3,8 +3,8 @@ from tkinter import ttk
 import random
 import string
 
+# Import the MQTT-lib
 import paho.mqtt.client as mqtt
-
 
 class MQTTChatGUI(Frame):
     def __init__(self, root, **kw):
@@ -15,18 +15,21 @@ class MQTTChatGUI(Frame):
         frm = ttk.Frame(self.root, padding=10)
         frm.grid()
         ttk.Label(frm, text="Broker").grid(column=0, row=0, sticky="w")
+        # create field for broker enrty
         self.broker_entry = ttk.Entry(frm, text="Broker")
         self.broker_entry.grid(column=1, row=0, columnspan=3, sticky="ew")
+        # Create text field
         self.main_text = Text(frm, height=20, width=50)
         self.main_text.grid(column=0, row=1, columnspan=5)
         ttk.Label(frm, text="Message").grid(column=0, row=2, sticky="w")
+        # Create field for message
         self.message_entry = ttk.Entry(frm, text="Message")
         self.message_entry.grid(column=1, row=2, columnspan=3, sticky="we")
         self.message_entry.bind("<Return>", self.send_message)
+        # Create send-button
         self.send_button = ttk.Button(frm, text="Send")
         self.send_button.grid(column=4, row=2, sticky="e")
         self.send_button.config(command=self.send_message)
-
         # set default values
         self.broker_entry.insert(0, "broker.mqttdashboard.com")
 
@@ -43,16 +46,27 @@ class MQTTChatGUI(Frame):
         self.mqtt_client.loop_start()
 
     def receive_message(self, client, user_data, message):
+        """
+        nimmt Nachricht entgegen
+        :param client:
+        :param user_data:
+        :param message: Message
+        :return:
+        """
         text = message.payload.decode("utf8")
         self.main_text.insert(END, text + '\n')
 
     def on_connect(self, client, userdata, flags, rc):
+        # Print "connected" after reconnect
         print("Connected.")
+        # Get messages from Chat, QoS1
         self.mqtt_client.subscribe("/BWI20KS/Chat", 1)
 
     def send_message(self, event=None):
         message = self.message_entry.get()
+        # Delete entry in message field after sending
         self.message_entry.delete(0, END)
+        # publish message after send, QoS1
         self.mqtt_client.publish("/BWI20KS/Chat", message, 1)
 
 
