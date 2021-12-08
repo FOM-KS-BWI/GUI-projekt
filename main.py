@@ -38,7 +38,9 @@ class MQTTChatGUI(Frame):
         self.mqtt_client.connect("broker.mqttdashboard.com")
         self.mqtt_client.on_message = self.receive_message
         self.mqtt_client.on_connect = self.on_connect
-        self.mqtt_client.loop_start()
+       #self.mqtt_client.loop_start()
+        self.after(100,self.mqtt_client.loop_start)
+
 
     def receive_message(self, client, user_data, message):
         text = message.payload.decode("utf8")
@@ -50,12 +52,13 @@ class MQTTChatGUI(Frame):
 
     def send_message(self, event=None):
         message = self.message_entry.get()
+        self.message_entry.delete(0, END)
         self.mqtt_client.publish("/BWI20KS/Chat", message, 1)
 
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    root = Tk()
+    root = Tk(className = "MQTT-Chat")
     main_gui = MQTTChatGUI(root)
     root.mainloop()
 
