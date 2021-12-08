@@ -1,5 +1,7 @@
 from tkinter import *
 from tkinter import ttk
+import random
+import string
 
 import paho.mqtt.client as mqtt
 
@@ -34,7 +36,9 @@ class MQTTChatGUI(Frame):
         # self.connect_button.config(command=connect_mqtt)
         # self.send_button.config(command=send_message)
 
-        self.mqtt_client: mqtt.Client = mqtt.Client("Niklas")
+        letters = string.ascii_lowercase
+        self.id = ''.join(random.choice(letters) for i in range(20))
+        self.mqtt_client: mqtt.Client = mqtt.Client(self.id)
         self.mqtt_client.connect("broker.mqttdashboard.com")
         self.mqtt_client.on_message = self.receive_message
         self.mqtt_client.on_connect = self.on_connect
