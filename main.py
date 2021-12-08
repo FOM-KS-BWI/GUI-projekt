@@ -45,11 +45,11 @@ class MQTTChatGUI(Frame):
 
     def on_connect(self, client, userdata, flags, rc):
         print("Connected.")
-        self.mqtt_client.subscribe("/BWI20KS/Chat")
+        self.mqtt_client.subscribe("/BWI20KS/Chat", 1)
 
     def send_message(self, event=None):
         message = self.message_entry.get()
-        self.mqtt_client.publish("/BWI20KS/Chat", message)
+        self.mqtt_client.publish("/BWI20KS/Chat", message, 1)
 
 
 # Press the green button in the gutter to run the script.
