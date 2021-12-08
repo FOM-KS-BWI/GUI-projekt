@@ -30,6 +30,11 @@ class MQTTChatGUI(Frame):
         self.send_button = ttk.Button(frm, text="Send")
         self.send_button.grid(column=4, row=2, sticky="e")
         self.send_button.config(command=self.send_message)
+        self.scrollbar = ttk.Scrollbar(root, orient='vertical', command=self.main_text.yview)
+        self.scrollbar.grid(row=0, column=1, sticky='ns')
+        self.main_text.config(yscrollcommand=self.scrollbar.set)
+
+
         # set default values
         self.broker_entry.insert(0, "broker.mqttdashboard.com")
 
