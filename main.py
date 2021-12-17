@@ -14,9 +14,9 @@ class MQTTChatGUI(Frame):
 
         frm = ttk.Frame(self.root, padding=10)
         frm.grid()
-        ttk.Label(frm, text="Broker").grid(column=0, row=0, sticky="w")
+        ttk.Label(frm, text="Nickname").grid(column=0, row=0, sticky="w")
         # create field for broker enrty
-        self.broker_entry = ttk.Entry(frm, text="Broker")
+        self.broker_entry = ttk.Entry(frm, text="Nickname")
         self.broker_entry.grid(column=1, row=0, columnspan=3, sticky="ew")
         # Create text field
         self.main_text = Text(frm, height=20, width=50)
