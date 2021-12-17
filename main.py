@@ -62,6 +62,14 @@ class MQTTChatGUI(Frame):
         self.main_text.insert(END, text + '\n')
 
     def on_connect(self, client, userdata, flags, rc):
+        """
+        Verbindet sich mit dem Topic und schreibt einmalig 'connected'
+        :param client:
+        :param userdata:
+        :param flags:
+        :param rc:
+        :return:
+        """
         # Print "connected" after reconnect
         print("Connected.")
         # Get messages from Chat, QoS1
