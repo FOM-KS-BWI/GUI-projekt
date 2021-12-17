@@ -36,7 +36,7 @@ class MQTTChatGUI(Frame):
 
 
         # set default values
-        self.broker_entry.insert(0, "broker.mqttdashboard.com")
+        self.broker_entry.insert(0, "Nickname")
 
         # set callbacks
         # self.connect_button.config(command=connect_mqtt)
