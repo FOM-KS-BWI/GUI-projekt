@@ -16,8 +16,8 @@ class MQTTChatGUI(Frame):
         frm.grid()
         ttk.Label(frm, text="Nickname").grid(column=0, row=0, sticky="w")
         # create field for broker enrty
-        self.broker_entry = ttk.Entry(frm, text="Nickname")
-        self.broker_entry.grid(column=1, row=0, columnspan=3, sticky="ew")
+        self.nickname_entry = ttk.Entry(frm, text="Nickname")
+        self.nickname_entry.grid(column=1, row=0, columnspan=3, sticky="ew")
         # Create text field
         self.main_text = Text(frm, height=20, width=50)
         self.main_text.grid(column=0, row=1, columnspan=5)
@@ -36,7 +36,7 @@ class MQTTChatGUI(Frame):
 
 
         # set default values
-        self.broker_entry.insert(0, "Nickname")
+        self.nickname_entry.insert(0, "Nickname")
 
         # set callbacks
         # self.connect_button.config(command=connect_mqtt)
@@ -76,7 +76,7 @@ class MQTTChatGUI(Frame):
         self.mqtt_client.subscribe("/BWI20KS/Chat", 1)
 
     def send_message(self, event=None):
-        message = self.broker_entry.get() + ": " + self.message_entry.get()
+        message = self.nickname_entry.get() + ": " + self.message_entry.get()
         # Delete entry in message field after sending
         self.message_entry.delete(0, END)
         # publish message after send, QoS1
