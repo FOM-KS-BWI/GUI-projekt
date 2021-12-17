@@ -6,6 +6,7 @@ import string
 # Import the MQTT-lib
 import paho.mqtt.client as mqtt
 
+
 class MQTTChatGUI(Frame):
     def __init__(self, root, **kw):
         super().__init__(**kw)
@@ -33,7 +34,6 @@ class MQTTChatGUI(Frame):
         self.scrollbar = ttk.Scrollbar(self.root, orient='vertical', command=self.main_text.yview)
         self.scrollbar.grid(row=0, column=1, sticky='ns')
         self.main_text.config(yscrollcommand=self.scrollbar.set)
-
 
         # set default values
         self.nickname_entry.insert(0, "Nickname")
