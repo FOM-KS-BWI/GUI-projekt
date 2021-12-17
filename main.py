@@ -68,7 +68,7 @@ class MQTTChatGUI(Frame):
         self.mqtt_client.subscribe("/BWI20KS/Chat", 1)
 
     def send_message(self, event=None):
-        message = self.message_entry.get()
+        message = self.broker_entry.get() + ": " + self.message_entry.get()
         # Delete entry in message field after sending
         self.message_entry.delete(0, END)
         # publish message after send, QoS1
